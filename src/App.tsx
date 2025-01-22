@@ -18,7 +18,6 @@ function App() {
 
   function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
-    console.log("file: ", file);
     if (!file) return;
 
     setLoading(true);
@@ -30,10 +29,7 @@ function App() {
       const workbook = read(u8);
       const worksheet = workbook.Sheets[workbook.SheetNames[0]];
       const json: unknown[][] = utils.sheet_to_json(worksheet, { header: 1 });
-      console.log("json: ", json);
       const [headers, ...rows] = json;
-      console.log("headers: ", headers);
-      console.log("rows: ", rows);
 
       const columns: AnalysisResultColumn[] = headers.map((header, index) => {
         const values = rows.map((row) => row[index]);
@@ -68,7 +64,6 @@ function App() {
         let topValues: [string, number][] | undefined;
 
         if (type === "Text") {
-          console.log("text");
           const counts: Record<string, number> = {};
           nonEmptyValues.forEach((v): void => {
             counts[v as string] = (counts[v as string] || 0) + 1;
@@ -77,9 +72,7 @@ function App() {
             .sort((a, b) => b[1] - a[1])
             .slice(0, 5);
         } else if (type === "Number") {
-          console.log("number");
           const nums = nonEmptyValues.map(Number);
-          console.log("nums :", nums);
           mean = nums.reduce((sum, number) => sum + number, 0) / nums.length;
           stdDev = Math.sqrt(
             nums.reduce(
@@ -97,7 +90,6 @@ function App() {
           topValues,
         };
       });
-      console.log("columns: ", columns);
       setAnalysisResults([
         {
           filename: file.name,
@@ -159,8 +151,8 @@ function App() {
                     <td>
                       <ol>
                         {col.topValues
-                          ? col.topValues.map(([val, count]) => (
-                              <li className="topValue">
+                          ? col.topValues.map(([val, count], index) => (
+                              <li className="topValue" key={index}>
                                 {val} ({count})
                               </li>
                             ))
