@@ -1,0 +1,99 @@
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  box-sizing: content-box;
+  overflow: hidden;
+  /* max-width: max-content; */
+}
+
+th {
+  font-weight: bold;
+  width: auto;
+  /* overflow: visible; */
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 20%; /* Adjust width for Column Name */
+  width: max-content;
+  min-width: min-content;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 10%; /* Adjust width for Type */
+  width: max-content;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 15%; /* Adjust width for Empty Count */
+  width: max-content;
+}
+
+th:nth-child(4),
+td:nth-child(4),
+th:nth-child(5),
+td:nth-child(5) {
+  width: 15%; /* Adjust width for Mean and Std Dev */
+  width: max-content;
+}
+
+th:nth-child(6),
+td:nth-child(6) {
+  width: 25%; /* Adjust width for Top Values */
+}
+
+.result {
+  margin-bottom: 20px;
+  overflow-x: auto; /* Ensures table remains scrollable on smaller screens */
+}
+
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 6px;
+  }
+}
+
+.filename {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.deleteButton {
+  padding: 0 1.5rem;
+  line-height: 2.5rem;
+}
+
+.filename h2,
+.filename .deleteButton {
+  margin: 0;
+}
+
+/* p.topValue {
+  margin: 0.2rem;
+} */
+ol {
+  padding-left: 20px;
+  /* margin: 0; */
+}

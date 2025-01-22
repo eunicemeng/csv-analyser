@@ -1,0 +1,3 @@
+1. All CSV files used with this program must have a header row followed by data rows. Information that is not part of the tabular data should not be included in the CSV file.
+2. The data types that can be recognised by the program are string (text), numbers and booleans. Dates are considered to be strings.
+3. All data in the same column will have the same type.
